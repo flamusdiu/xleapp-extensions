@@ -13,7 +13,7 @@ class CellularWirless(Artifact, category="Celluar Wireless", label="Celluar Wire
     @Search("**/com.apple.commcenter.plist")
     @Search("**/com.apple.commcenter.device_specific_nobackup.plist")
     def process(self) -> None:
-        device_info = self.app.device
+        device_info = self.device
 
         for fp in self.found:
             pl = plistlib.load(fp())

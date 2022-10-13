@@ -51,4 +51,4 @@ class DeviceActivator(Artifact, category="IOS Build", label="iOS Device Activato
                     "WifiAddress",
                     "ModelNumber",
                 ):
-                    self.app.device.update({key: value})
+                    self.device.update({key: value})

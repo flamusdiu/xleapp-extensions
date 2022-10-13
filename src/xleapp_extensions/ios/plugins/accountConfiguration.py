@@ -4,7 +4,7 @@ from unicodedata import category
 from xleapp import Artifact, Search, WebIcon
 
 
-class AccountConfiguration(Artifact, category="Accounts", label="Accounts"):
+class AccountConfiguration(Artifact, category="Accounts", label="Account Configuration"):
     def __post_init__(self) -> None:
         self.web_icon = WebIcon.USER
 

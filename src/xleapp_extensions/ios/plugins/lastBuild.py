@@ -11,7 +11,7 @@ class LastBuild(Artifact, category="Core", label="Build Information"):
 
     @Search("*LastBuildInfo.plist")
     def process(self):
-        device_info = self.app.device
+        device_info = self.device
         for fp in self.found:
             pl = plistlib.load(fp())
             for key, value in pl.items():
