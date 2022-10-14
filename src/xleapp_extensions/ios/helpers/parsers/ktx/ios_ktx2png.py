@@ -1,16 +1,16 @@
 """
     (c) Yogesh Khatri 2020, MIT License
 
-    This library converts ios created KTX files to PNG. These are 
+    This library converts ios created KTX files to PNG. These are
     textures in KTX format, with raw texture  data in compressed ATSC
     format using a block size of 4x4, which is further compressed with
     LZFSE compression.
 
-    iOS created KTX files use Adaptive Scalable Texture Compression 
+    iOS created KTX files use Adaptive Scalable Texture Compression
     (ASTC) as the compressed texture format. Note that a KTX file
-    can contain other formats too like PVR and several other 
+    can contain other formats too like PVR and several other
     variations of ASTC which can't be read by this code. Here we
-    only focus on ASTC 4x4, which is the default on iOS. Some apps 
+    only focus on ASTC 4x4, which is the default on iOS. Some apps
     ship with KTX files that are not of the same type and can't be
     parsed with this code.
 
@@ -28,7 +28,7 @@
 
     Output will be in the same folder, called SAMPLE.KTX.png
 
-    See main 
+    See main
 """
 
 import astc_decomp

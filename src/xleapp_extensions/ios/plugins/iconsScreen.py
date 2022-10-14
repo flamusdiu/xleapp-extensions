@@ -11,9 +11,9 @@ class IconScreen(Artifact, category="iOS Screens", label="Apps per screen"):
 
     @Search("**/SpringBoard/IconState.plist")
     def process(self) -> None:
-        ios_version = self.app.device["ProductVersion"]
+        ios_version = self.device["ProductVersion"]
         if version.parse(ios_version) >= version.parse("14"):
-            self.log(message=f'iOS Screen artifact not compatible with iOS {ios_version}')
+            self.log(message=f"iOS Screen artifact not compatible with iOS {ios_version}")
             return
 
         for fp in self.found:
@@ -21,7 +21,7 @@ class IconScreen(Artifact, category="iOS Screens", label="Apps per screen"):
 
             class Screen:
                 screen_num: int = 0
-                folder: str | None = ''
+                folder: str | None = ""
                 bundles: list = []
 
                 def __init__(self, icon_list: list, folder: str = "", num: int = None):

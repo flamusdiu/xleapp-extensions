@@ -1,4 +1,4 @@
-# xLEAPP Artifacts 
+# xLEAPP Artifacts
 
 Provides Open-Sourced artifacts supported under [MIT license ](https://opensource.org/licenses/MIT).
 

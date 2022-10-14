@@ -1,3 +1,4 @@
+import contextlib
 import json
 
 import magic
@@ -38,25 +39,27 @@ class DiscordMessages(Artifact, category="Discord", label="Discord Messages"):
 
             with open(fp()) as file_in:
                 for json_data in file_in:
-                    try:
+                    with contextlib.suppress(ValueError):
                         json_parse = json.loads(json_data)
 
                         if not isinstance(json_parse, list):
                             continue
 
                         message_json_fields = (
-                            ("author", "username"),
-                            ("author", "id"),
-                            ("author", "bot"),
                             "timestamp",
                             "edited_timestamp",
+                            ("author", "username"),
+                            ("author", "bot"),
                             "content",
-                            "channel",
                             "attachments",
+                            ("author", "id"),
+                            "channel",
                             "embeds",
                         )
                         for message in json_parse:
-                            message_dict = filter_json(message, message_json_fields)
+                            message_dict = filter_json(
+                                json=message, fields=message_json_fields
+                            )
                             attachments = message_dict.get("attachments", "")
                             if attachments:
                                 message_dict["attachments"] = "\n".join(
@@ -65,9 +68,11 @@ class DiscordMessages(Artifact, category="Discord", label="Discord Messages"):
                                         for attachment in attachments
                                     },
                                 )
+                            else:
+                                message_dict["attachments"] = ""
 
                             embed_metadata = []
-                            embeds = message_dict.get("embeds", "")
+                            embeds = message_dict.pop("embeds", "")
                             if embeds:
                                 embed_json_fields = (
                                     "url",
@@ -82,7 +87,7 @@ class DiscordMessages(Artifact, category="Discord", label="Discord Messages"):
                                     embeds_dict = filter_json(embed, embed_json_fields)
                                     embed_metadata.append(list(embeds_dict.values()))
                             else:
-                                embed_metadata = ['', '', '', '', '', '', '']
+                                embed_metadata = ["", "", "", "", "", "", ""]
 
                             file_path = fp.path.resolve()
 
@@ -93,6 +98,3 @@ class DiscordMessages(Artifact, category="Discord", label="Discord Messages"):
                                     file_path,
                                 ),
                             )
-
-                    except ValueError as err:
-                        continue
