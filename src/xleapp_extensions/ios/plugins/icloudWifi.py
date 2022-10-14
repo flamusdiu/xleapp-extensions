@@ -15,13 +15,13 @@ class IcloudWifi(Artifact, category="Wifi Connections", label="iCloud Wifi Netwo
     @Search("**/com.apple.wifid.plist")
     def process(self) -> None:
         class WifiNetwork:
-            ssid: str
-            bssid: str
-            added_by: str
-            added_at: str
-            enabled: str
-            wnpmd: str
-            plist: str
+            ssid: str = ""
+            bssid: str = ""
+            added_by: str = ""
+            added_at: str = ""
+            enabled: str = ""
+            wnpmd: str = ""
+            plist: str = ""
 
             def __init__(self, network: dict) -> None:
 
@@ -48,7 +48,7 @@ class IcloudWifi(Artifact, category="Wifi Connections", label="iCloud Wifi Netwo
             deserialized = plistlib.load(fp())
 
             try:
-                for _, network_info in deserialized["values"]:
+                for _, network_info in deserialized["values"].items():
                     network = WifiNetwork(network_info)
                     self.data.append(network.attributes())
             except KeyError:
