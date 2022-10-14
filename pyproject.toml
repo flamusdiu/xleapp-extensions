@@ -69,7 +69,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.flakeheaven]
 # exclude 3rd party parsers
-exclude =["src/xleapp_ios/helpers/parsers"] 
+exclude =["src/xleapp_ios/helpers/parsers"]
 format = "grouped"
 max_line_length = 90
 show_source = true
