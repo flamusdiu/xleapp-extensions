@@ -114,7 +114,7 @@ class IcloudPhotoMetadata(
                 return filter_json(pl, pl_json_fields)
 
         for fp in self.found:
-            with open(fp(), "r") as json_data:
+            with open(fp()) as json_data:
                 for line in json_data:
                     json_parse = json.loads(json_data)
 

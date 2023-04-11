@@ -28,7 +28,7 @@ class IcloudMetadata(Artifact, category="iCloud Returns", label="iCloud - File M
     @Search("*/iclouddrive/Metadata.txt", file_names_only=True)
     def process(self) -> None:
         for fp in self.found:
-            with open(fp(), "r") as json_file:
+            with open(fp()) as json_file:
                 for line in json_file:
                     json_data = json.loads(line)
                     json_fields = (
