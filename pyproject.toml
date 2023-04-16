@@ -14,7 +14,7 @@ documentation = "https://github.com/flamusdiu/xleapp"
 keywords = ["forensics", "dfir", "security", "framework"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.9,<3.12"
 astc-decomp = "^1.0.3"
 bplist = "^1.1"
 astc_decomp = "^1.0.3"
@@ -24,7 +24,7 @@ nska-deserialize = "^1.3.2"
 pandas = "^1.4.3"
 pyliblzfse = "^0.4.1"
 defusedxml = "^0.7.1"
-Pillow = "^9.2.0"
+Pillow = "^9.5.0"
 packaging = "^21.3"
 
 black = {version = "^22.6.0", optional = true}
@@ -69,7 +69,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.flakeheaven]
 # exclude 3rd party parsers
-exclude =["src/xleapp_ios/helpers/parsers"]
+exclude =["src/xleapp_extensions/ios/helpers/parsers"]
 format = "grouped"
 max_line_length = 90
 show_source = true
