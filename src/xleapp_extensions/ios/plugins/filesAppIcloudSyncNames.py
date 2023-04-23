@@ -6,7 +6,7 @@ class FilesAppICloudSyncNames(Artifact, category="Files App", label="iCloud Sync
     def __post_init__(self) -> None:
 
         self.web_icon = WebIcon.FILE_TEXT
-        self.description = 'Device names that are able to sync to iCloud Drive.'
+        self.description = "Device names that are able to sync to iCloud Drive."
 
     @Search(
         (

@@ -7,10 +7,10 @@ class AppleWalletCards(Artifact, category="Apple Wallet", label="Cards"):
     def __post_init__(self) -> None:
 
         self.report_headers = (
-            'Timestamp (Card Added)',
-            'Card Number',
-            'Expiration Date',
-            'Type',
+            "Timestamp (Card Added)",
+            "Card Number",
+            "Expiration Date",
+            "Type",
         )
         self.timeline = True
 
@@ -38,7 +38,7 @@ class AppleWalletCards(Artifact, category="Apple Wallet", label="Cards"):
 
                     for digit_num in num_of_digits:
                         found_entry = re.findall(
-                            r'\d{{{digits}}}'.format(digits=digit_num),
+                            r"\d{{{digits}}}".format(digits=digit_num),
                             card_information,
                         )
                         if found_entry:
@@ -48,29 +48,29 @@ class AppleWalletCards(Artifact, category="Apple Wallet", label="Cards"):
                     first_digit = str(card_num)[:1]
                     first_two_digits = str(card_num)[:2]
 
-                    if first_digit == '4' and (num_length == 13 or num_length == 16):
-                        return 'Visa'
-                    elif first_digit == '5' and num_length == 16:
-                        return 'Mastercard'
-                    elif first_digit == '6' and num_length == 16:
-                        return 'Discover'
+                    if first_digit == "4" and (num_length == 13 or num_length == 16):
+                        return "Visa"
+                    elif first_digit == "5" and num_length == 16:
+                        return "Mastercard"
+                    elif first_digit == "6" and num_length == 16:
+                        return "Discover"
                     elif (
-                        first_two_digits == '34' or first_two_digits == '37'
+                        first_two_digits == "34" or first_two_digits == "37"
                     ) and num_length == 15:
-                        return 'American Express'
+                        return "American Express"
                     elif (
-                        first_two_digits == '30'
-                        or first_two_digits == '36'
-                        or first_two_digits == '38'
+                        first_two_digits == "30"
+                        or first_two_digits == "36"
+                        or first_two_digits == "38"
                     ) and num_length == 14:
-                        return 'Diners Club Carte Blanche'
+                        return "Diners Club Carte Blanche"
                     else:
-                        return 'Unknown'
+                        return "Unknown"
 
                 for row in all_rows:
-                    card_info = str(row["PROTO_PROPS"], 'utf-8', 'ignore')
+                    card_info = str(row["PROTO_PROPS"], "utf-8", "ignore")
                     card_number = get_bank_card_number(card_info)
-                    expiration_date = re.findall(r'\d{2}/\d{2}', card_info)
+                    expiration_date = re.findall(r"\d{2}/\d{2}", card_info)
                     card_type = get_card_type(card_number, len(card_number))
 
                     self.data.append(

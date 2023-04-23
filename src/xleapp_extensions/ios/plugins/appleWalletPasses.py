@@ -11,16 +11,16 @@ class AppleWalletPasses(Artifact, category="Apple Wallet", label="Passes"):
     def __post_init__(self) -> None:
 
         self.report_headers = (
-            'Unique ID',
-            'Organization Name',
-            'Type',
-            'Localized Description',
-            'Pass Added',
-            'Pending Delete',
-            'Pass Details',
-            'Front Fields Content',
-            'Back Fields Content',
-            'Encoded Pass',
+            "Unique ID",
+            "Organization Name",
+            "Type",
+            "Localized Description",
+            "Pass Added",
+            "Pending Delete",
+            "Pass Details",
+            "Front Fields Content",
+            "Back Fields Content",
+            "Encoded Pass",
         )
         self.timeline = True
 
@@ -64,11 +64,11 @@ class AppleWalletPasses(Artifact, category="Apple Wallet", label="Passes"):
                             except Exception:
                                 json_data = "Malformed data"
 
-                            encoded_pass = str(row["ENCODED_PASS"], 'utf-8', 'ignore')
+                            encoded_pass = str(row["ENCODED_PASS"], "utf-8", "ignore")
                             front_field = str(
-                                row["FRONT_FIELD_BUCKETS"], 'utf-8', 'ignore'
+                                row["FRONT_FIELD_BUCKETS"], "utf-8", "ignore"
                             )
-                            back_field = str(row["BACK_FIELD_BUCKETS"], 'utf-8', 'ignore')
+                            back_field = str(row["BACK_FIELD_BUCKETS"], "utf-8", "ignore")
                             row_dict = dict_from_row(row)
                             self.data.append(
                                 (

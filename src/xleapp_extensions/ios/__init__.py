@@ -44,9 +44,9 @@ class IosPlugin(Plugin):
                     if not info_plist_path.exists():
                         ArtifactError("Info.plist not found for iTunes Backup!")
                     else:
-                        artifacts['LAST_BUILD'].select = False
+                        artifacts["LAST_BUILD"].select = False
             else:
-                artifacts['ITUNES_BACKUP_INFO'].select = False
+                artifacts["ITUNES_BACKUP_INFO"].select = False
 
     def register_seekers(self, search_providers: FileSearchProvider) -> None:
         search_providers.register_builder("ITUNES", FileSeekerItunes())
@@ -90,8 +90,8 @@ class FileSeekerItunes(FileSeekerBase):
         db.row_factory = sqlite3.Row
         all_rows = cursor.fetchall()
         for row in all_rows:
-            relative_path: str = row['relativePath']
-            hash_filename: str = row['fileID']
+            relative_path: str = row["relativePath"]
+            hash_filename: str = row["fileID"]
             all_files[relative_path] = hash_filename
         db.close()
 

@@ -6,20 +6,20 @@ class AppleWalletTransactions(Artifact, category="Apple Wallet", label="Tranacti
     def __post_init__(self) -> None:
 
         self.report_headers = (
-            'Transaction Date',
-            'Merchant',
-            'Locality',
-            'Administrative Area',
-            'Currency Amount',
-            'Currency Type',
-            'Location Date',
-            'Latitude',
-            'Longitude',
-            'Altitude',
-            'Peer Payment Handle',
-            'Payment Memo',
-            'Transaction Status',
-            'Transaction Type',
+            "Transaction Date",
+            "Merchant",
+            "Locality",
+            "Administrative Area",
+            "Currency Amount",
+            "Currency Type",
+            "Location Date",
+            "Latitude",
+            "Longitude",
+            "Altitude",
+            "Peer Payment Handle",
+            "Payment Memo",
+            "Transaction Status",
+            "Transaction Type",
         )
         self.timeline = True
 

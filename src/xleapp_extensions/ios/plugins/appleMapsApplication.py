@@ -16,13 +16,13 @@ class AppleMapsApplication(Artifact, category="Locations", label="Apple Maps App
             pl = plistlib.load(fp())
 
             types = {
-                '1': {'type': 'double', 'name': 'Latitude'},
-                '2': {'type': 'double', 'name': 'Longitude'},
-                '3': {'type': 'double', 'name': ''},
-                '4': {'type': 'fixed64', 'name': ''},
-                '5': {'type': 'double', 'name': ''},
+                "1": {"type": "double", "name": "Latitude"},
+                "2": {"type": "double", "name": "Longitude"},
+                "3": {"type": "double", "name": ""},
+                "4": {"type": "fixed64", "name": ""},
+                "5": {"type": "double", "name": ""},
             }
-            protobuf = pl.get('__internal__LastActivityCamera', None)
+            protobuf = pl.get("__internal__LastActivityCamera", None)
 
             if protobuf:
                 internal_plist, _ = blackboxprotobuf.decode_message(protobuf, types)

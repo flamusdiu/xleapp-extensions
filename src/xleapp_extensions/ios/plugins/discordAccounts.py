@@ -19,7 +19,7 @@ class DiscordAccounts(Artifact, category="Discord", label="Discord Accounts"):
             data_list = set()
             for counter, search_string in enumerate(searchlist, start=1):
                 if "user_id_cache" in search_string:
-                    cache = 'USER_ID_CACHE'
+                    cache = "USER_ID_CACHE"
                 if "email_cache" in search_string:
                     cache = "EMAIL_CACHE"
                 if cache:

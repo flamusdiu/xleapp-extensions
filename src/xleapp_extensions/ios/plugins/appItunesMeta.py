@@ -72,6 +72,6 @@ class AppItunesMeta(
 
             if fp.path.name == "BundleMetadata.plist":
                 deserialized_plist = nd.deserialize_plist(fp())
-                install_date = deserialized_plist.get('installDate', '')
+                install_date = deserialized_plist.get("installDate", "")
 
         self.data.append((install_date, *metadata))

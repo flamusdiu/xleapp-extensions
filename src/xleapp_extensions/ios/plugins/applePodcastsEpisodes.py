@@ -6,20 +6,20 @@ class ApplePodcastsEpisodes(Artifact, category="Apple Podcasts", label="Episodes
     def __post_init__(self) -> None:
 
         self.report_headers = (
-            'Import Date',
-            'Metadata Timestamp',
-            'Date Last Played',
-            'Play State Last Modified',
-            'Download Date',
-            'Play Count',
-            'Author',
-            'Title',
-            'Subtitle',
-            'Asset URL',
-            'Web Page URL',
-            'Duration',
-            'Size',
-            'Play State',
+            "Import Date",
+            "Metadata Timestamp",
+            "Date Last Played",
+            "Play State Last Modified",
+            "Download Date",
+            "Play Count",
+            "Author",
+            "Title",
+            "Subtitle",
+            "Asset URL",
+            "Web Page URL",
+            "Duration",
+            "Size",
+            "Play State",
         )
         self.timeline = True
 
@@ -28,7 +28,7 @@ class ApplePodcastsEpisodes(Artifact, category="Apple Podcasts", label="Episodes
         for fp in self.found:
             cursor = fp().cursor()
             cursor.execute(
-                '''
+                """
                 SELECT
                 datetime(ZIMPORTDATE + 978307200, 'unixepoch'),
                 CASE ZMETADATATIMESTAMP
@@ -49,7 +49,7 @@ class ApplePodcastsEpisodes(Artifact, category="Apple Podcasts", label="Episodes
                 ZPLAYSTATE
                 FROM ZMTEPISODE
                 ORDER by ZMETADATATIMESTAMP
-                '''
+                """
             )
 
         all_rows = cursor.fetchall()

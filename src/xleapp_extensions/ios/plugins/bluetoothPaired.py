@@ -28,7 +28,7 @@ class BluetoothPaired(Artifact, category="Bluetooth", label="Bluetooth Paired"):
                 try:
                     lastseen = datetime.datetime.fromtimestamp(
                         int(mac_address_info.get("lastseen")),
-                    ).strftime('%Y-%m-%d %H:%M:%S')
+                    ).strftime("%Y-%m-%d %H:%M:%S")
                 except TypeError:
                     lastseen = None
 
