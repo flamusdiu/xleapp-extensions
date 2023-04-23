@@ -4,7 +4,6 @@ from pathlib import Path
 
 from PIL import Image
 from xleapp import Artifact, Search, WebIcon
-
 from xleapp_extensions.ios.helpers.parsers import ktxparser
 
 

@@ -1,12 +1,12 @@
 import fnmatch
+import functools
 import logging
+import pathlib
 import shutil
 import sqlite3
 import tarfile
 import typing as t
 
-import functools
-import pathlib
 from zipfile import ZipFile
 
 from xleapp.artifact import ArtifactError, Artifacts
