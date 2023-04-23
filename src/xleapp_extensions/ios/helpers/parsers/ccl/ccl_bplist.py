@@ -58,7 +58,7 @@ class BplistUID:
         self.value = value
 
     def __repr__(self):
-        return "UID: {}".format(self.value)
+        return "UID: {0}".format(self.value)
 
     def __str__(self):
         return self.__repr__()
@@ -88,7 +88,7 @@ def __decode_multibyte_int(b, signed=True):
             result -= 0x100000000000000000000000000000000
         return result
     else:
-        raise BplistError("Cannot decode multibyte int of length {}".format(len(b)))
+        raise BplistError("Cannot decode multibyte int of length {0}".format(len(b)))
 
     if signed and len(b) > 1:
         return struct.unpack(fmt.lower(), b)[0]
@@ -102,7 +102,7 @@ def __decode_float(b, signed=True):
     elif len(b) == 8:
         fmt = ">d"
     else:
-        raise BplistError("Cannot decode float of length {}".format(len(b)))
+        raise BplistError("Cannot decode float of length {0}".format(len(b)))
 
     if signed:
         return struct.unpack(fmt.lower(), b)[0]
@@ -128,7 +128,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
         return True
     elif type_byte == 0x0F:  # Fill    0000 1111
         raise BplistError(
-            "Fill type not currently supported at offset {}".format(f.tell())
+            "Fill type not currently supported at offset {0}".format(f.tell())
         )  # Not sure what to return really...
     elif type_byte & 0xF0 == 0x10:  # Int    0001 xxxx
         int_length = 2 ** (type_byte & 0x0F)
@@ -160,7 +160,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
                 int_type_byte = f.read(1)[0]
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long Data field definition not followed by int type at offset {}".format(
+                    "Long Data field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -180,7 +180,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
                 int_type_byte = f.read(1)[0]
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long ASCII field definition not followed by int type at offset {}".format(
+                    "Long ASCII field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -200,7 +200,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
                 int_type_byte = f.read(1)[0]
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long UTF-16 field definition not followed by int type at offset {}".format(
+                    "Long UTF-16 field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -224,7 +224,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
                 int_type_byte = f.read(1)[0]
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long Array field definition not followed by int type at offset {}".format(
+                    "Long Array field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -254,7 +254,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
                 int_type_byte = f.read(1)[0]
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long Set field definition not followed by int type at offset {}".format(
+                    "Long Set field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -283,7 +283,7 @@ def __decode_object(f, offset, collection_offset_size, offset_table):
             # print("Dictionary length int byte: {0}".format(hex(int_type_byte)))
             if int_type_byte & 0xF0 != 0x10:
                 raise BplistError(
-                    "Long Dict field definition not followed by int type at offset {}".format(
+                    "Long Dict field definition not followed by int type at offset {0}".format(
                         f.tell()
                     )
                 )
@@ -398,11 +398,11 @@ def NSKeyedArchiver_convert(o, object_table):
 
 class NsKeyedArchiverDictionary(dict):
     def __init__(self, original_dict, object_table):
-        super().__init__(original_dict)
+        super(NsKeyedArchiverDictionary, self).__init__(original_dict)
         self.object_table = object_table
 
     def __getitem__(self, index):
-        o = super().__getitem__(index)
+        o = super(NsKeyedArchiverDictionary, self).__getitem__(index)
         return NSKeyedArchiver_convert(o, self.object_table)
 
     def get(self, key, default=None):
@@ -419,15 +419,15 @@ class NsKeyedArchiverDictionary(dict):
 
 class NsKeyedArchiverList(list):
     def __init__(self, original_iterable, object_table):
-        super().__init__(original_iterable)
+        super(NsKeyedArchiverList, self).__init__(original_iterable)
         self.object_table = object_table
 
     def __getitem__(self, index):
-        o = super().__getitem__(index)
+        o = super(NsKeyedArchiverList, self).__getitem__(index)
         return NSKeyedArchiver_convert(o, self.object_table)
 
     def __iter__(self):
-        for o in super().__iter__():
+        for o in super(NsKeyedArchiverList, self).__iter__():
             yield NSKeyedArchiver_convert(o, self.object_table)
 
 
@@ -494,19 +494,19 @@ def convert_NSMutableDictionary(obj):
     # sense check the keys and values:
     if not isinstance(keys, list):
         raise TypeError(
-            "The 'NS.keys' value is an unexpected type (expected list; actual: {}".format(
+            "The 'NS.keys' value is an unexpected type (expected list; actual: {0}".format(
                 type(keys)
             )
         )
     if not isinstance(vals, list):
         raise TypeError(
-            "The 'NS.objects' value is an unexpected type (expected list; actual: {}".format(
+            "The 'NS.objects' value is an unexpected type (expected list; actual: {0}".format(
                 type(vals)
             )
         )
     if len(keys) != len(vals):
         raise ValueError(
-            "The length of the 'NS.keys' list ({}) is not equal to that of the 'NS.objects ({})".format(
+            "The length of the 'NS.keys' list ({0}) is not equal to that of the 'NS.objects ({1})".format(
                 len(keys), len(vals)
             )
         )
