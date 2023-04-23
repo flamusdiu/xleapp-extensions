@@ -31,7 +31,7 @@ class AppConduit(Artifact, category="App Conduit", label="App Conduit"):
         date_filter = re.compile(reg_filter)
 
         for fp in self.found:
-            fp_found = open(fp(), "r", encoding="utf8")
+            fp_found = open(fp(), encoding="utf8")
             linecount = 0
 
             for line in fp_found:
