@@ -31,13 +31,15 @@
     See main
 """
 
-import astc_decomp
-import liblzfse
 import os
 import struct
 import sys
 
+import astc_decomp
+import liblzfse
+
 from PIL import Image
+
 
 version = 1.0
 

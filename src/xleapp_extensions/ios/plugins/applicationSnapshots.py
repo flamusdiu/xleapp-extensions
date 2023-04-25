@@ -3,8 +3,7 @@ import datetime
 from pathlib import Path
 
 from PIL import Image
-from xleapp import Artifact, Search, WebIcon
-
+from xleapp import Artifact, Search
 from xleapp_extensions.ios.helpers.parsers import ktxparser
 
 
@@ -12,13 +11,12 @@ class ApplicationSnapshots(
     Artifact, category="Installed Apps", label="App Snapshots (screenshots)"
 ):
     def __post_init__(self) -> None:
-
         self.description = (
             "Snapshots saved by iOS for individual apps appear here. Blank "
             "screenshots are excluded here. Dates and times shown are from "
             "file modified timestamps"
         )
-        self.report_headers = ('App Name', 'Source Path', 'Date Modified', 'Snapshot')
+        self.report_headers = ("App Name", "Source Path", "Date Modified", "Snapshot")
 
     @Search(
         "**/Library/Caches/Snapshots/*", file_names_only=True, return_on_first_hit=False
@@ -27,16 +25,16 @@ class ApplicationSnapshots(
     def process(self) -> None:
         def save_ktx_to_png_if_valid(ktx_path: Path, save_to_path: Path) -> bool:
             """Excludes all white or all black blank images"""
-            with open(ktx_path, 'rb') as f:
+            with open(ktx_path, "rb") as f:
                 ktx = ktxparser.KTX_reader()
                 try:
                     if ktx.validate_header(f):
                         data = ktx.get_uncompressed_texture_data(f)
                         dec_img = Image.frombytes(
-                            'RGBA',
+                            "RGBA",
                             (ktx.pixelWidth, ktx.pixelHeight),
                             data,
-                            'astc',
+                            "astc",
                             (4, 4, False),
                         )
                         # either all black or all white https://stackoverflow.com/questions/14041562/python-pil-detect-if-an-image-is-completely-black-or-white
@@ -47,7 +45,7 @@ class ApplicationSnapshots(
                         dec_img.save(save_to_path, "PNG")
                         return True
                 except (OSError, ValueError, ktxparser.liblzfse.error) as ex:
-                    self.log(message=f'Had an exception - {str(ex)}')
+                    self.log(message=f"Had an exception - {str(ex)}")
             return False
 
         data_list = []
@@ -65,7 +63,7 @@ class ApplicationSnapshots(
             else:
                 app_name = fp.path.parts[-3].split(" ")[0]
 
-            if app_name.startswith('sceneID'):
+            if app_name.startswith("sceneID"):
                 app_name = app_name[8:]
 
             dash_pos = app_name.find("-")
@@ -73,7 +71,7 @@ class ApplicationSnapshots(
             if dash_pos > 0:
                 app_name = app_name[0:dash_pos]
 
-            if fp.path.suffix == '.ktx':
+            if fp.path.suffix == ".ktx":
                 if fp.path.stat().st_size < 2500:  # too small, they are blank
                     continue
                 png_path = Path(
@@ -84,7 +82,7 @@ class ApplicationSnapshots(
                         fp.path.stat().st_mtime,
                     )
                     data_list.append([app_name, fp.path, last_modified_date, png_path])
-            elif fp.path.suffix == '.jpeg':
+            elif fp.path.suffix == ".jpeg":
                 jpg_path = Path(self.data_save_folder / f"{app_name}_{fp.path.parts[-1]}")
                 if self.copyfile(fp.path, jpg_path):
                     last_modified_date = datetime.datetime.fromtimestamp(

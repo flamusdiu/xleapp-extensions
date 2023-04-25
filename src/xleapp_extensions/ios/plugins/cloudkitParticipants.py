@@ -2,13 +2,12 @@ import io
 
 import nska_deserialize as nd
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.utils import deep_get
 
 
 class CloudKitParticipants(Artifact, category="CloudKit", label="Participants"):
     def __post_init__(self) -> None:
-
         self.description = (
             "CloudKit Participants - CloudKit accounts participating "
             "in CloudKit shares."

@@ -1,12 +1,11 @@
 import datetime
 import re
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppConduit(Artifact, category="App Conduit", label="App Conduit"):
     def __post_init__(self) -> None:
-
         self.description = (
             "The AppConduit log file stores information about interactions "
             "between iPhone and other iOS devices, i.e. Apple Watch"
@@ -31,7 +30,7 @@ class AppConduit(Artifact, category="App Conduit", label="App Conduit"):
         date_filter = re.compile(reg_filter)
 
         for fp in self.found:
-            fp_found = open(fp(), "r", encoding="utf8")
+            fp_found = open(fp(), encoding="utf8")
             linecount = 0
 
             for line in fp_found:

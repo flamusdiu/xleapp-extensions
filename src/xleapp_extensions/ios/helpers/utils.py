@@ -1,6 +1,9 @@
+SIZE_OF_BYTE = 2
+
+
 def hexify_byte(byte_to_convert):
     to_return = hex(byte_to_convert).replace("0x", "")
-    if len(to_return) < 2:
+    if len(to_return) < SIZE_OF_BYTE:
         to_return += "0"
 
     return to_return

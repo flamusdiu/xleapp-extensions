@@ -1,12 +1,10 @@
-import xleapp.helpers.strings as strings
-
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
+from xleapp.helpers import strings
 from xleapp.helpers.db import dict_from_row
 
 
 class GeodPDPlaceCache(Artifact, category="Locations", label="GeoD PD Place Cache"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "last access time",
             "requestkey",

@@ -1,5 +1,4 @@
 import plistlib
-from unicodedata import category
 
 from xleapp import Artifact, Search, WebIcon
 

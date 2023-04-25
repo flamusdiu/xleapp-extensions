@@ -4,7 +4,7 @@ import json
 import plistlib
 
 from xleapp import Artifact, Search, WebIcon
-from xleapp.helpers.utils import filter_json, time_factor_conversion
+from xleapp.helpers.utils import filter_json
 
 
 class IcloudPhotoMetadata(
@@ -41,35 +41,35 @@ class IcloudPhotoMetadata(
     def process(self) -> None:
         class Photo:
             artifact = self.app
-            id = ''
-            rowid = ''
-            created_timestamp = ''
-            created_user = ''
-            created_device = ''
-            modified_timestamp = ''
-            modified_user = ''
-            modified_device = ''
-            decoded = ''
-            is_deleted = ''
-            is_expunged = ''
-            org_filesize = ''
-            rec_mod_date = ''
-            import_date = ''
-            f_org_creation_date = ''
-            res_org_filesize = ''
-            added_date = ''
-            timezoneoffse = ''
-            latitude = ''
-            longitude = ''
-            altitude = ''
-            datestamp = ''
-            timestamp = ''
-            vid_name = ''
-            decoded_tz = ''
-            title = ''
-            recordtype = ''
-            tiff = ''
-            exif = ''
+            id = ""
+            rowid = ""
+            created_timestamp = ""
+            created_user = ""
+            created_device = ""
+            modified_timestamp = ""
+            modified_user = ""
+            modified_device = ""
+            decoded = ""
+            is_deleted = ""
+            is_expunged = ""
+            org_filesize = ""
+            rec_mod_date = ""
+            import_date = ""
+            f_org_creation_date = ""
+            res_org_filesize = ""
+            added_date = ""
+            timezoneoffse = ""
+            latitude = ""
+            longitude = ""
+            altitude = ""
+            datestamp = ""
+            timestamp = ""
+            vid_name = ""
+            decoded_tz = ""
+            title = ""
+            recordtype = ""
+            tiff = ""
+            exif = ""
 
             def __init__(self, metadata: dict) -> None:
                 photo_fields = (
@@ -114,8 +114,8 @@ class IcloudPhotoMetadata(
                 return filter_json(pl, pl_json_fields)
 
         for fp in self.found:
-            with open(fp(), "r") as json_data:
-                for line in json_data:
+            with open(fp()) as json_data:
+                for _line in json_data:
                     json_parse = json.loads(json_data)
 
                     if isinstance(json_parse, dict):

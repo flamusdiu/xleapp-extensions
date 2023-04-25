@@ -7,7 +7,6 @@ class FilesAppIcloudClientItems(
     Artifact, category="Files App", label="iCloud Client Items"
 ):
     def __post_init__(self) -> None:
-
         self.web_icon = WebIcon.FILE_TEXT
         self.description = "Items stored in iCloud Drive with metadata about files."
 

@@ -1,12 +1,11 @@
 import datetime
 import plistlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class BluetoothPaired(Artifact, category="Bluetooth", label="Bluetooth Paired"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Last Seen Time",
             "MAC Address",
@@ -28,7 +27,7 @@ class BluetoothPaired(Artifact, category="Bluetooth", label="Bluetooth Paired"):
                 try:
                     lastseen = datetime.datetime.fromtimestamp(
                         int(mac_address_info.get("lastseen")),
-                    ).strftime('%Y-%m-%d %H:%M:%S')
+                    ).strftime("%Y-%m-%d %H:%M:%S")
                 except TypeError:
                     lastseen = None
 

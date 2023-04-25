@@ -1,3 +1,4 @@
-import xleapp_extensions.ios as ios
+from xleapp_extensions import ios
+
 
 __PLUGINS__ = [ios]

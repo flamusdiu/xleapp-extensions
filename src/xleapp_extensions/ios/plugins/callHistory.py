@@ -4,7 +4,6 @@ from xleapp.helpers.db import dict_from_row
 
 class CallHistory(Artifact, category="Call History", label="Call History"):
     def __post_init__(self) -> None:
-
         self.web_icon = WebIcon.PHONE_CALL
         self.report_headers = (
             "Timestamp",

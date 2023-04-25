@@ -3,7 +3,7 @@ import re
 
 import defusedxml.ElementTree as ET
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class DeviceActivator(Artifact, category="IOS Build", label="iOS Device Activator Data"):
@@ -17,8 +17,8 @@ class DeviceActivator(Artifact, category="IOS Build", label="iOS Device Activato
 
         for fp in self.found:
             for line in fp():
-                line = str(line, encoding="utf-8").strip()
-                all_lines += line
+                new_line = str(line, encoding="utf-8").strip()
+                all_lines += new_line
 
             found = re.findall(
                 (

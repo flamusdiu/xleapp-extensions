@@ -4,7 +4,7 @@ import logging
 import struct
 import zlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 logger = logging.getLogger("xleapp.logfile")
@@ -12,7 +12,6 @@ logger = logging.getLogger("xleapp.logfile")
 
 class GeodMapTiles(Artifact, category="Locations", label="GeoD Map Tiles"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Timestamp",
             "Places_from_VLOC",

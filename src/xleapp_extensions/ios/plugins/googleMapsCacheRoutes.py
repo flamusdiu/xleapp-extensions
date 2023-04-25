@@ -8,7 +8,6 @@ class GoogleMapsCacheRoutes(
     Artifact, category="Locations", label="Google Maps Cache Routes"
 ):
     def __post_init__(self) -> None:
-
         self.web_icon = WebIcon.MAP_PIN
         self.report_headers = ("Timestamp", "Latitude", "Longitude", "Source File")
         self.timeline = True

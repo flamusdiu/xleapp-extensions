@@ -6,7 +6,6 @@ from xleapp.templating.html import NavigationItem
 
 class CellularWirless(Artifact, category="Celluar Wireless", label="Celluar Wireless"):
     def __post_init__(self) -> NavigationItem:
-
         self.web_icon = WebIcon.BAR_CHART
         self.report_headers = ("Key", "Value", "Source")
 
@@ -18,14 +17,15 @@ class CellularWirless(Artifact, category="Celluar Wireless", label="Celluar Wire
         for fp in self.found:
             pl = plistlib.load(fp())
             for key, value in pl.items():
-                self.data.append((key, value))
-                if key in (
+                tmp_key = key
+                self.data.append((tmp_key, value))
+                if tmp_key in (
                     "ReportedPhoneNumber",
                     "CDMANetworkPhoneNumberICCID",
                     "imei",
                     "LastKnownICCID",
                     "meid",
                 ):
-                    if key in ["imei", "meid"]:
-                        key = key.upper()
-                    device_info.update({key: value})
+                    if tmp_key in ["imei", "meid"]:
+                        tmp_key = tmp_key.upper()
+                    device_info.update({tmp_key: value})

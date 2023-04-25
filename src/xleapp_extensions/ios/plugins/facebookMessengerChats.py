@@ -1,10 +1,9 @@
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.db import dict_from_row
 
 
 class FacebookMessengerChats(Artifact, category="Facebook Messenger", label="Chats"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Timestamp",
             "Sender Name",
