@@ -151,9 +151,9 @@ class FileSeekerItunes(FileSeekerBase):
                 num_of_files = sum(1 for member in gz_or_tar_file if member.isreg())
                 for member in gz_or_tar_file:
                     if fnmatch.fnmatch(member.name, "**/Manifest.db"):
-                        logger.info(f"Manifest.db found in {input_path!r}...")
+                        logger.info(f"Manifest.db found in {repr(input_path)}...")
                         logger.info(
-                            f"Extracting {num_of_files} files from backup to {self.temp_folder!r}"
+                            f"Extracting {num_of_files} files from backup to {repr(self.temp_folder)}"
                         )
 
                         gz_or_tar_file.extractall(path=extract_dir)
@@ -163,9 +163,9 @@ class FileSeekerItunes(FileSeekerBase):
                 num_of_files = len(zip_file.infolist())
                 for member in zip_file.namelist():
                     if fnmatch.fnmatch(member, "**/Manifest.db"):
-                        logger.info(f"Manifest.db found in {input_path!r}...")
+                        logger.info(f"Manifest.db found in {repr(input_path)}...")
                         logger.info(
-                            f"Extracting {num_of_files} files from backup to {self.temp_folder!r}"
+                            f"Extracting {num_of_files} files from backup to {repr(self.temp_folder)}"
                         )
                         zip_file.extractall(path=extract_dir)
                         self.manifest_db = extract_dir / member
