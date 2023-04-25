@@ -7,7 +7,6 @@ class FilesAppIcloudServerItems(
     Artifact, category="Files App", label="iCloud Server Items"
 ):
     def __post_init__(self) -> None:
-
         self.web_icon = WebIcon.FILE_TEXT
 
     @Search(

@@ -6,7 +6,6 @@ from xleapp import Artifact, Search, WebIcon
 
 class IconScreen(Artifact, category="iOS Screens", label="Apps per screen"):
     def __post__init__(self) -> None:
-
         self.web_icon = WebIcon.MAXIMIZE
 
     @Search("**/SpringBoard/IconState.plist")

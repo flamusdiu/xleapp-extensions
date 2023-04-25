@@ -9,7 +9,6 @@ from xleapp.helpers.utils import deep_get
 
 class IcloudWifi(Artifact, category="Wifi Connections", label="iCloud Wifi Networks"):
     def __post__init__(self) -> None:
-
         self.web_icon = WebIcon.WIFI
 
     @Search("**/com.apple.wifid.plist")
@@ -24,7 +23,6 @@ class IcloudWifi(Artifact, category="Wifi Connections", label="iCloud Wifi Netwo
             plist: str = ""
 
             def __init__(self, network: dict) -> None:
-
                 self.ssid = str(deep_get(network, "SSID_STR"))
                 self.bssid = str(deep_get(network, "BSSID"))
                 self.enabled = deep_get(network, "enabled")

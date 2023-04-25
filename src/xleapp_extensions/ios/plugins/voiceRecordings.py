@@ -6,7 +6,6 @@ from xleapp.helpers.utils import unix_epoch_to_readable_date
 
 class VoiceRecording(Artifact, category="Voice-Recordings", label="Voice Recordings"):
     def __post_init__(self) -> None:
-
         self.report_title = "Voice Recordings"
         self.web_icon = WebIcon.MIC
 

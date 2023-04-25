@@ -52,7 +52,6 @@ class AppleWifiKnownNetworks(Artifact, category="Locations", label="Wifi Known N
             plist: str
 
             def __init__(self, network: dict) -> None:
-
                 self.ssid = str(deep_get(network, "SSID_STR"))
                 self.bssid = str(deep_get(network, "BSSID"))
                 self.net_usage = str(deep_get(network, "networkUsage"))
