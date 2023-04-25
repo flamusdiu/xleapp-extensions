@@ -1,6 +1,6 @@
 import json
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class DiscordManifest(Artifact, category="Discord", label="Discord Manifest"):

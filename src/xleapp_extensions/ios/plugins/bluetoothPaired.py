@@ -1,12 +1,11 @@
 import datetime
 import plistlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class BluetoothPaired(Artifact, category="Bluetooth", label="Bluetooth Paired"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Last Seen Time",
             "MAC Address",

@@ -1,11 +1,10 @@
 import plistlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class Alarms(Artifact, category="Alarms", label="Alarms"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Alarm Title",
             "Alarm Enabled",

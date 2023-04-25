@@ -2,7 +2,7 @@ import plistlib
 
 import nska_deserialize as nd
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppItunesMeta(

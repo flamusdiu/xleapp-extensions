@@ -3,12 +3,11 @@ import plistlib
 
 import nska_deserialize as nd
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class ApplicationState(Artifact, category="Installed Apps", label="Application State"):
     def __post_init__(self) -> None:
-
         self.report_headers = ("Bundle ID", "Bundle Path", "Sandbox Path")
         self.description = "Application State DB"
 

@@ -4,7 +4,7 @@ import json
 import plistlib
 
 from xleapp import Artifact, Search, WebIcon
-from xleapp.helpers.utils import filter_json, time_factor_conversion
+from xleapp.helpers.utils import filter_json
 
 
 class IcloudPhotoMetadata(
@@ -115,7 +115,7 @@ class IcloudPhotoMetadata(
 
         for fp in self.found:
             with open(fp()) as json_data:
-                for line in json_data:
+                for _line in json_data:
                     json_parse = json.loads(json_data)
 
                     if isinstance(json_parse, dict):

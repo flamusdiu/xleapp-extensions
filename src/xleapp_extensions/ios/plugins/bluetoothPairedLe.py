@@ -1,10 +1,9 @@
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.db import dict_from_row
 
 
 class BluetoothPairedLe(Artifact, category="Bluetooth", label="Bluetooth Paired LE"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "UUID",
             "Name",

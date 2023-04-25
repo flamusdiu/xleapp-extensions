@@ -3,7 +3,7 @@ import datetime
 from pathlib import Path
 
 from PIL import Image
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp_extensions.ios.helpers.parsers import ktxparser
 
 
@@ -11,7 +11,6 @@ class ApplicationSnapshots(
     Artifact, category="Installed Apps", label="App Snapshots (screenshots)"
 ):
     def __post_init__(self) -> None:
-
         self.description = (
             "Snapshots saved by iOS for individual apps appear here. Blank "
             "screenshots are excluded here. Dates and times shown are from "

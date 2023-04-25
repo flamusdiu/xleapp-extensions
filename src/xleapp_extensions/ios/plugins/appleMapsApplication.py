@@ -2,12 +2,11 @@ import plistlib
 
 import blackboxprotobuf
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppleMapsApplication(Artifact, category="Locations", label="Apple Maps App"):
     def __post_init__(self) -> None:
-
         self.report_headers = ("Latitude", "Longitude")
 
     @Search("**/Data/Application/*/Library/Preferences/com.apple.Maps.plist")

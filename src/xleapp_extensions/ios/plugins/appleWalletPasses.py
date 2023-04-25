@@ -1,15 +1,18 @@
 import json
+import typing as t
 
-from pathlib import Path
 from re import DOTALL, search
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.db import dict_from_row
+
+
+if t.TYPE_CHECKING:
+    from pathlib import Path
 
 
 class AppleWalletPasses(Artifact, category="Apple Wallet", label="Passes"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Unique ID",
             "Organization Name",

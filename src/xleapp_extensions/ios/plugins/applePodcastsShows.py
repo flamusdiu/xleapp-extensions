@@ -1,10 +1,9 @@
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.db import dict_from_row
 
 
 class ApplePodcastsShows(Artifact, category="Apple Podcasts", label="Shows"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Date Added",
             "Date Last Played",

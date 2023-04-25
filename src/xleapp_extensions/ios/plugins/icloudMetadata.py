@@ -2,13 +2,12 @@ import json
 
 from datetime import datetime
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.utils import filter_json
 
 
 class IcloudMetadata(Artifact, category="iCloud Returns", label="iCloud - File Metadata"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Btime",
             "Ctime",

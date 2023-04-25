@@ -2,9 +2,7 @@ import logging
 import plistlib
 
 from xleapp import Artifact, Search, WebIcon
-from xleapp.helpers.utils import deep_get
-
-from ..helpers.utils import bytes_to_mac_address
+from xleapp.helpers.utils import bytes_to_mac_address, deep_get
 
 
 class AppleWifiScannedPrivateNetworks(

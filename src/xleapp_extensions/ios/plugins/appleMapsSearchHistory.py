@@ -1,13 +1,12 @@
 import plistlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppleMapsSearchHistory(
     Artifact, category="Locations", label="Apple Maps Search History"
 ):
     def __post_init__(self) -> None:
-
         self.report_headers = ("Tempstamp", "Search Entry")
         self.timeline = True
 

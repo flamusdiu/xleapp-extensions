@@ -1,11 +1,10 @@
 import re
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppleWalletCards(Artifact, category="Apple Wallet", label="Cards"):
     def __post_init__(self) -> None:
-
         self.report_headers = (
             "Timestamp (Card Added)",
             "Card Number",

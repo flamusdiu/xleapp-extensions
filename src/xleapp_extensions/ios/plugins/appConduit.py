@@ -1,12 +1,11 @@
 import datetime
 import re
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class AppConduit(Artifact, category="App Conduit", label="App Conduit"):
     def __post_init__(self) -> None:
-
         self.description = (
             "The AppConduit log file stores information about interactions "
             "between iPhone and other iOS devices, i.e. Apple Watch"

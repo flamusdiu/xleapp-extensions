@@ -32,12 +32,7 @@ class ItunesBackupInfo(Artifact, category="IOS Build", label="iTunes Backup"):
             pl = plistlib.load(fp())
             data_list = []
             for key, value in pl.items():
-                if (
-                    isinstance(value, str)
-                    or isinstance(value, int)
-                    or isinstance(value, datetime.datetime)
-                ):
-
+                if isinstance(value, (datetime.datetime, int, str)):
                     self.data.append((key, value))
                     if key in (
                         "Build Version",

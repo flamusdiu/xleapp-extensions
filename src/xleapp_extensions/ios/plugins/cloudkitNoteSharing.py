@@ -2,13 +2,12 @@ import io
 
 import nska_deserialize as nd
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 from xleapp.helpers.utils import deep_get
 
 
 class CloudKitSharing(Artifact, category="CloudKit", label="CloudKit Note Sharing"):
     def __post_init__(self):
-
         self.report_headers = (
             "Record ID",
             "Record Type",
@@ -26,7 +25,6 @@ class CloudKitSharing(Artifact, category="CloudKit", label="CloudKit Note Sharin
     @Search("*NoteStore.sqlite")
     def process(self) -> None:
         for fp in self.found:
-
             cursor = fp().cursor()
             cursor.execute(
                 """

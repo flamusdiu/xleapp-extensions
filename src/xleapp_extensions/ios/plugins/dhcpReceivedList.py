@@ -1,6 +1,6 @@
 import plistlib
 
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class DhcpReceivedList(Artifact, category="DHCP", label="Recevied List"):

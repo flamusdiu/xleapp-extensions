@@ -1,9 +1,8 @@
-from xleapp import Artifact, Search, WebIcon
+from xleapp import Artifact, Search
 
 
 class ConnectedDevices(Artifact, category="Connected to", label="Connected Devices"):
     def __post_init__(self) -> None:
-
         self.report_headers = ("User & Computer Names",)
 
     @Search("**/iTunes_Control/iTunes/iTunesPrefs")
@@ -14,7 +13,7 @@ class ConnectedDevices(Artifact, category="Connected to", label="Connected Devic
 
             self.log(
                 message=(
-                    "-> Data being interpreted for FRPD is of type: " f"{str(type(data))}"
+                    f"-> Data being interpreted for FRPD is of type: {str(type(data))}"
                 ),
             )
 
@@ -35,7 +34,7 @@ class ConnectedDevices(Artifact, category="Connected to", label="Connected Devic
                 )
                 for offset in range(int(magicOffset + 92), len(data)):
                     if (data[offset]) == 0:
-                        offset = int(magicOffset) + 157
+                        new_offset = int(magicOffset) + 157
                         if userByteArr.decode() == "":
                             continue
                         else:
@@ -48,6 +47,6 @@ class ConnectedDevices(Artifact, category="Connected to", label="Connected Devic
                             userByteArr = bytearray()
                             continue
                     else:
-                        char = data[offset]
+                        char = data[new_offset]
                         userByteArr.append(char)
             self.data.append((userComps,))
